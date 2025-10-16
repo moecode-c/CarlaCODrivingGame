@@ -1,0 +1,75 @@
+<?xml version="1.0" standalone="yes"?>
+<OpenDRIVE>
+  <header revMajor="1" revMinor="4" name="two_streets" version="1.00" date="2025-10-17" north="0" south="0" east="0" west="0" vendor="copilot"/>
+  <!-- A minimal plus-shaped 2-road intersection: one horizontal and one vertical straight road -->
+  <!-- Road 1: East-West -->
+  <road name="east_west" length="200.0" id="1" junction="-1">
+    <planView>
+      <geometry s="0.0" x="-100.0" y="0.0" hdg="0.0" length="200.0">
+        <line/>
+      </geometry>
+    </planView>
+    <elevationProfile/>
+    <lateralProfile/>
+    <lanes>
+      <laneOffset s="0.0" a="0.0" b="0.0" c="0.0" d="0.0"/>
+      <laneSection s="0.0">
+        <left>
+          <lane id="2" type="driving" level="false">
+            <width sOffset="0.0" a="3.5" b="0.0" c="0.0" d="0.0"/>
+          </lane>
+          <lane id="1" type="driving" level="false">
+            <width sOffset="0.0" a="3.5" b="0.0" c="0.0" d="0.0"/>
+          </lane>
+        </left>
+        <center>
+          <lane id="0" type="none" level="false"/>
+        </center>
+        <right>
+          <lane id="-1" type="driving" level="false">
+            <width sOffset="0.0" a="3.5" b="0.0" c="0.0" d="0.0"/>
+          </lane>
+          <lane id="-2" type="driving" level="false">
+            <width sOffset="0.0" a="3.5" b="0.0" c="0.0" d="0.0"/>
+          </lane>
+        </right>
+      </laneSection>
+    </lanes>
+  </road>
+  <!-- Road 2: North-South -->
+  <road name="north_south" length="200.0" id="2" junction="-1">
+    <planView>
+      <geometry s="0.0" x="0.0" y="-100.0" hdg="1.57079632679" length="200.0">
+        <line/>
+      </geometry>
+    </planView>
+    <elevationProfile/>
+    <lateralProfile/>
+    <lanes>
+      <laneOffset s="0.0" a="0.0" b="0.0" c="0.0" d="0.0"/>
+      <laneSection s="0.0">
+        <left>
+          <lane id="2" type="driving" level="false">
+            <width sOffset="0.0" a="3.5" b="0.0" c="0.0" d="0.0"/>
+          </lane>
+          <lane id="1" type="driving" level="false">
+            <width sOffset="0.0" a="3.5" b="0.0" c="0.0" d="0.0"/>
+          </lane>
+        </left>
+        <center>
+          <lane id="0" type="none" level="false"/>
+        </center>
+        <right>
+          <lane id="-1" type="driving" level="false">
+            <width sOffset="0.0" a="3.5" b="0.0" c="0.0" d="0.0"/>
+          </lane>
+          <lane id="-2" type="driving" level="false">
+            <width sOffset="0.0" a="3.5" b="0.0" c="0.0" d="0.0"/>
+          </lane>
+        </right>
+      </laneSection>
+    </lanes>
+  </road>
+  <!-- This simple file intentionally omits junction linkage for minimalism.
+       CARLA will generate a drivable open map where roads cross; behavior may vary by version. -->
+</OpenDRIVE>

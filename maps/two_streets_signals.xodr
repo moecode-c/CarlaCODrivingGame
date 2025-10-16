@@ -1,0 +1,111 @@
+<?xml version="1.0" standalone="yes"?>
+<OpenDRIVE>
+  <header revMajor="1" revMinor="4" name="two_streets_signals" version="1.01" date="2025-10-17" north="0" south="0" east="0" west="0" vendor="copilot"/>
+  <!-- Two perpendicular roads crossing at (0,0), with simple traffic light signals per approach. -->
+  <!-- Road 1: East-West (heading +X) -->
+  <road name="east_west" length="240.0" id="1" junction="-1">
+    <planView>
+      <geometry s="0.0" x="-120.0" y="0.0" hdg="0.0" length="240.0">
+        <line/>
+      </geometry>
+    </planView>
+    <elevationProfile/>
+    <lateralProfile/>
+    <lanes>
+      <laneOffset s="0.0" a="0.0" b="0.0" c="0.0" d="0.0"/>
+      <laneSection s="0.0">
+        <left>
+          <lane id="3" type="sidewalk" level="false">
+            <width sOffset="0.0" a="2.0" b="0.0" c="0.0" d="0.0"/>
+          </lane>
+          <lane id="2" type="driving" level="false">
+            <width sOffset="0.0" a="4.0" b="0.0" c="0.0" d="0.0"/>
+          </lane>
+          <lane id="1" type="driving" level="false">
+            <width sOffset="0.0" a="4.0" b="0.0" c="0.0" d="0.0"/>
+          </lane>
+        </left>
+        <center>
+          <lane id="0" type="none" level="false"/>
+        </center>
+        <right>
+          <lane id="-1" type="driving" level="false">
+            <width sOffset="0.0" a="4.0" b="0.0" c="0.0" d="0.0"/>
+          </lane>
+          <lane id="-2" type="driving" level="false">
+            <width sOffset="0.0" a="4.0" b="0.0" c="0.0" d="0.0"/>
+          </lane>
+          <lane id="-3" type="sidewalk" level="false">
+            <width sOffset="0.0" a="2.0" b="0.0" c="0.0" d="0.0"/>
+          </lane>
+        </right>
+      </laneSection>
+    </lanes>
+    <signals>
+      <!-- Place signals near far-side corners relative to each approach; center at s=120 -->
+  <!-- Eastbound (from west to east, +X): far-side NE corner (t positive on EW road) -->
+  <signal id="1002" name="ew_eastbound" s="130" t="10.2" type="1000001" subtype="0" orientation="-"/>
+  <!-- Westbound (from east to west, -X): far-side SW corner (t negative on EW road) -->
+  <signal id="1001" name="ew_westbound" s="110.5" t="-9.9" type="1000001" subtype="0" orientation="+"/>
+      <controller id="10" name="ctrl_ew" sequence="0"/>
+      <signalReference id="1001"/> 
+      <signalReference id="1002"/>
+      <!-- Crosswalk markers near center lines (advisory) -->
+      <signal id="1011" name="crosswalk_ew_1" s="119.5" t="0.0" type="1302" subtype="0" orientation="+"/>
+      <signal id="1012" name="crosswalk_ew_2" s="120.5" t="0.0" type="1302" subtype="0" orientation="-"/>
+    </signals>
+  </road>
+  <!-- Road 2: North-South (heading +Y) -->
+  <road name="north_south" length="240.0" id="2" junction="-1">
+    <planView>
+      <geometry s="0.0" x="0.0" y="-120.0" hdg="1.57079632679" length="240.0">
+        <line/>
+      </geometry>
+    </planView>
+    <elevationProfile/>
+    <lateralProfile/>
+    <lanes>
+      <laneOffset s="0.0" a="0.0" b="0.0" c="0.0" d="0.0"/>
+      <laneSection s="0.0">
+        <left>
+          <lane id="3" type="sidewalk" level="false">
+            <width sOffset="0.0" a="2.0" b="0.0" c="0.0" d="0.0"/>
+          </lane>
+          <lane id="2" type="driving" level="false">
+            <width sOffset="0.0" a="4.0" b="0.0" c="0.0" d="0.0"/>
+          </lane>
+          <lane id="1" type="driving" level="false">
+            <width sOffset="0.0" a="4.0" b="0.0" c="0.0" d="0.0"/>
+          </lane>
+        </left>
+        <center>
+          <lane id="0" type="none" level="false"/>
+        </center>
+        <right>
+          <lane id="-1" type="driving" level="false">
+            <width sOffset="0.0" a="4.0" b="0.0" c="0.0" d="0.0"/>
+          </lane>
+          <lane id="-2" type="driving" level="false">
+            <width sOffset="0.0" a="4.0" b="0.0" c="0.0" d="0.0"/>
+          </lane>
+          <lane id="-3" type="sidewalk" level="false">
+            <width sOffset="0.0" a="2.0" b="0.0" c="0.0" d="0.0"/>
+          </lane>
+        </right>
+      </laneSection>
+    </lanes>
+    <signals>
+  <!-- Northbound (from south to north, +Y): far-side NE corner; on NS road, t negative moves east -->
+  <signal id="2002" name="ns_northbound" s="110" t="-10.5" type="1000001" subtype="0" orientation="-"/>
+  <!-- Southbound (from north to south, -Y): far-side SW corner; on NS road, t positive moves west -->
+  <signal id="2001" name="ns_southbound" s="130" t="10" type="1000001" subtype="0" orientation="+"/>
+      <controller id="20" name="ctrl_ns" sequence="0"/>
+      <signalReference id="2001"/>
+      <signalReference id="2002"/>
+      <signal id="2011" name="crosswalk_ns_1" s="119.5" t="0.0" type="1302" subtype="0" orientation="+"/>
+      <signal id="2012" name="crosswalk_ns_2" s="120.5" t="0.0" type="1302" subtype="0" orientation="-"/>
+    </signals>
+  </road>
+  <!-- Note: This minimal file does not define a junction element. Some CARLA versions can still spawn TrafficLight actors from signals.
+       If lights don't appear, we will provide a junctioned version next. -->
+</OpenDRIVE>

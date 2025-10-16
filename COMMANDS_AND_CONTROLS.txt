@@ -1,0 +1,64 @@
+CARLA Traffic Lights — Commands and Controls (Windows PowerShell)
+
+Prerequisites
+- Start the CARLA simulator (CarlaUE4.exe). Make sure only one instance is running and that Windows Firewall allows it.
+- Default connection is 127.0.0.1:2000. If you changed host/port, pass --host/--port to the script.
+- Run these commands in PowerShell from this folder: C:\Users\MO 2024\Desktop\CARLA Traffic Lights
+
+Quick Start (Recommended)
+# Third-person, easy driving, smooth camera, no background traffic, small map
+python Carla.py --drive --camera third --easy-drive --camera-smooth 0.18 --max-speed-kmh 25 --no-traffic --town Town01 --minimal-visuals --retries 60
+
+Alternate Runs
+# First-person, easy driving
+python Carla.py --drive --camera first --easy-drive --camera-smooth 0.22 --max-speed-kmh 25 --no-traffic --town Town01 --retries 60
+
+# With background traffic (remove --no-traffic)
+python Carla.py --drive --camera third --easy-drive --max-speed-kmh 30 --town Town01 --retries 60
+
+# Different small town map
+python Carla.py --drive --camera third --easy-drive --town Town03 --no-traffic --retries 60
+
+# Custom host/port (if simulator is remote or non-default)
+python Carla.py --host 127.0.0.1 --port 2000 --drive --camera third --easy-drive --no-traffic --retries 60
+
+# If CARLA is slow to start up, increase retries (each try waits ~2s)
+python Carla.py --drive --no-traffic --retries 90
+
+Load a simple two-streets custom map (OpenDRIVE)
+# The repository includes maps\\two_streets.xodr. You can load it like this:
+python Carla.py --opendrive .\maps\two_streets.xodr --drive --camera third --easy-drive --no-traffic --camera-smooth 0.18 --retries 60
+
+
+Controls (while driving)
+- W: Accelerate
+- S: Brake
+- A: Steer left
+- D: Steer right
+- Space: Full brake
+- R: Toggle reverse
+- Q: Quit driving loop
+
+Tuning Tips
+- Camera smoothness: lower values (0.15–0.25) are smoother; higher (0.3–0.5) are snappier.
+  Example: --camera-smooth 0.20
+- Easy-mode softens throttle/steer response and adds stability: --easy-drive
+- Speed limiter keeps things manageable: --max-speed-kmh 25..45 (default 40)
+- For best performance, keep only one CARLA instance running on port 2000.
+
+Useful Flags (cheat sheet)
+--drive                 Spawn a drivable ego vehicle (WASD)
+--camera {third|first}  Camera mode (default third)
+--camera-smooth <0..1>  Camera smoothing factor (default 0.25)
+--easy-drive            Gentler steering and throttle/brake for easier control
+--max-speed-kmh <num>   Speed limiter (default 40)
+--no-traffic            Do not spawn background vehicles
+--town <name>           Load a specific town (e.g., Town01, Town03)
+--minimal-visuals       Try to hide clutter (if supported by this CARLA build)
+--retries <n>           Connection attempts when starting (default 30)
+--host <ip>             CARLA host (default 127.0.0.1)
+--port <num>            CARLA port (default 2000)
+
+Notes
+- Minimal visuals will only apply if the CARLA build supports map layer toggling.
+- To record RGB frames from the car’s view, you can enable the camera attachment in code (attach_first_person_camera); it’s commented out by default.
