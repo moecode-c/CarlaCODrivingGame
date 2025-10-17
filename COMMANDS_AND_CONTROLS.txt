@@ -3,7 +3,7 @@ CARLA Traffic Lights — Commands and Controls (Windows PowerShell)
 Prerequisites
 - Start the CARLA simulator (CarlaUE4.exe). Make sure only one instance is running and that Windows Firewall allows it.
 - Default connection is 127.0.0.1:2000. If you changed host/port, pass --host/--port to the script.
-- Run these commands in PowerShell from this folder: C:\Users\MO 2024\Desktop\CARLA Traffic Lights
+- Run these commands in PowerShell from this folder: C:\Users\MO 2024\Desktop\CARLA Traffic Lights\CarlaCODrivingGame
 
 Quick Start (Recommended)
 # Third-person, easy driving, smooth camera, no background traffic, small map
@@ -26,8 +26,16 @@ python Carla.py --host 127.0.0.1 --port 2000 --drive --camera third --easy-drive
 python Carla.py --drive --no-traffic --retries 90
 
 Load a simple two-streets custom map (OpenDRIVE)
-# The repository includes maps\\two_streets.xodr. You can load it like this:
-python Carla.py --opendrive .\maps\two_streets.xodr --drive --camera third --easy-drive --no-traffic --camera-smooth 0.18 --retries 60
+# Use the fixed map file so edits are reflected:
+python Carla.py --opendrive .\maps\two_streets_signals_fixed.xodr --drive --camera third --easy-drive --no-traffic --camera-smooth 0.18 --retries 60
+
+# If you're running from the parent folder instead, specify the script path explicitly:
+# python .\CarlaCODrivingGame\Carla.py --opendrive .\CarlaCODrivingGame\maps\two_streets_signals_fixed.xodr --drive --camera third --easy-drive --no-traffic --camera-smooth 0.18 --retries 60
+
+Tip: In the console, look for:
+- [INFO] Loading OpenDRIVE map from <full path to two_streets_signals_fixed.xodr>
+- [INFO] OpenDRIVE map loaded.
+If you don't see these lines, the custom map didn't load (check the path).
 
 
 Controls (while driving)
